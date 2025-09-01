@@ -40,7 +40,7 @@ const ChatForm = ({ selectedUser }: ChatFormProps) => {
           name="Description"
           render={({ field }) => (
             <>
-              <div className="border-input focus-within:ring-ring shadow-md flex-1 gap-2 rounded-xl border px-2 py-2 focus-within:ring-1 focus-within:outline-hidden lg:gap-4 dark:bg-white/20 dark:backdrop-blur-lg dark:border-white/10 dark:shadow-lg dark:shadow-black/20">
+              <div className="border-input focus-within:ring-ring shadow-md flex-1 gap-2 rounded-xl border px-2 py-2 focus-within:ring-1 focus-within:outline-hidden lg:gap-4 bg-[var(--color-green-30)] border-[var(--color-green-30)]/30 dark:bg-white/20 dark:backdrop-blur-lg dark:border-white/10 dark:shadow-lg dark:shadow-black/20">
                 <label className="w-full">
                   <span className="sr-only">Chat Text Box</span>
                   <textarea

@@ -5,7 +5,10 @@ let accessToken: string | null = null;
 
 const API = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
-  headers: { "Content-Type": "application/json" },
+  headers: {
+    "Content-Type": "application/json",
+    "X-API-KEY": import.meta.env.VITE_API_HEADER_SECRET,
+  },
 });
 
 // Attach access token

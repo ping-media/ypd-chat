@@ -106,9 +106,9 @@ const Chat = () => {
                         </div>
                       ) : (
                         <div className="flex justify-end">
-                          <div className="dark:bg-white/20 dark:backdrop-blur-lg dark:border-white/10 dark:shadow-lg dark:shadow-black/20 max-w-[70%] p-3 rounded-[16px_16px_0_16px] shadow-md">
+                          <div className="bg-[var(--color-green-30)] border-[var(--color-green-30)]/10 dark:bg-white/20 dark:backdrop-blur-lg dark:border-white/10 dark:shadow-lg dark:shadow-black/20 max-w-[70%] p-3 rounded-[16px_16px_0_16px] shadow-md">
                             {msg.message}
-                            <div className="text-right text-xs mt-1 text-gray-300">
+                            <div className="text-right text-xs mt-1 text-gray-400 dark:text-gray-300">
                               {new Date(msg.timestamp).toLocaleTimeString([], {
                                 hour: "2-digit",
                                 minute: "2-digit",

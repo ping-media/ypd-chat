@@ -17,7 +17,7 @@ import { rightSidebarList } from "@/lib/menuList";
 import { ScrollArea } from "../ui/scroll-area";
 
 type AppSidebarProps = {
-  side?: string;
+  side?: "left" | "right";
 } & React.ComponentProps<typeof Sidebar>;
 
 const RightSidebar = ({ side = "right", ...props }: AppSidebarProps) => {

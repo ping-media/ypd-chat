@@ -46,6 +46,7 @@ const Input = ({
             Icon ? "pl-10" : "",
             "focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent no-spinner py-5"
           )}
+          autoComplete="off"
         />
       </div>
     </>

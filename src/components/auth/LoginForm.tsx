@@ -11,45 +11,28 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "../Input/Input";
 import { Lock, Mail } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
-import {
-  defaultLoginValues,
-  loginFormSchema,
-  LoginFormValues,
-} from "./Config/FormConfig";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/redux/store";
-// import { login } from "@/redux/authThunk/AuthThunk";
+import { Link } from "react-router-dom";
 import Spinner from "../loaders/spinner";
-import { toast } from "sonner";
-import { handleLogin } from "@/redux/authSlice/AuthSlice";
+import useAuth from "@/hooks/use-auth";
 
 export function LoginForm() {
-  const form = useForm<z.infer<typeof loginFormSchema>>({
-    resolver: zodResolver(loginFormSchema),
-    defaultValues: defaultLoginValues,
-  });
-  const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
+  const { FormLoginSchema, onLoginSubmit } = useAuth();
 
-  const handleLoginSubmit = async (values: LoginFormValues) => {
-    try {
-      // await dispatch(login(values)).unwrap();
-      console.log(values);
-      dispatch(handleLogin());
-      toast.success("login successfully");
-      navigate("/");
-    } catch (err) {
-      toast.error("unable to login! try again");
-      console.error(err);
-    }
-  };
+  const form = useForm<z.infer<typeof FormLoginSchema>>({
+    resolver: zodResolver(FormLoginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
   return (
     <Form {...form}>
       <form
         className="flex flex-col gap-4"
-        onSubmit={form.handleSubmit(handleLoginSubmit)}
+        onSubmit={form.handleSubmit((values) =>
+          onLoginSubmit(values, form.reset)
+        )}
       >
         <FormField
           control={form.control}

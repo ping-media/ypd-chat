@@ -23,7 +23,12 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    handleLogin: (state) => {
+    handleLogin: (state, action) => {
+      // const { access_token, expires_in, refresh_token, token_type, user } =
+      //   action.payload;
+      // state.user = user;
+      // state.accessToken = access_token;
+      // state.refreshToken = refresh_token;
       state.isLogged = true;
     },
     logout: (state) => {

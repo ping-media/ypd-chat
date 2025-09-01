@@ -3,9 +3,6 @@ import { cn } from "../../lib/utils";
 import { Button } from "../ui/button";
 import Heading from "../Heading";
 import Text from "../Text";
-import { Menu } from "lucide-react";
-import CircleTracker from "../sidebars/RightSidebar/CircleTracker";
-import { useSidebar } from "../ui/sidebar";
 
 interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
   fixed?: boolean;
@@ -28,7 +25,6 @@ const Header = ({
   ...props
 }: HeaderProps) => {
   const [offset, setOffset] = useState(0);
-  const { setOpenMobile } = useSidebar();
 
   useEffect(() => {
     const onScroll = () => {
@@ -50,7 +46,7 @@ const Header = ({
       {...props}
     >
       <div className="w-full flex flex-wrap items-center justify-between gap-3">
-        <div className="flex md:hidden justify-between w-full gap-3">
+        {/* <div className="flex md:hidden justify-between w-full gap-3">
           <Button variant={"glass"}>
             <Menu />
           </Button>
@@ -62,7 +58,7 @@ const Header = ({
           >
             <CircleTracker isButton={true} />
           </Button>
-        </div>
+        </div> */}
 
         <div>
           <Heading>{title}</Heading>

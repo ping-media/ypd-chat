@@ -6,26 +6,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Input from "../Input/Input";
 import { Lock, Mail, User2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import useAuth from "@/hooks/use-auth";
+import Spinner from "../loaders/spinner";
 
 export function RegisterForm() {
-  const formSchema = z
-    .object({
-      first_name: z.string(),
-      last_name: z.string(),
-      email: z.email({
-        message: "Please enter a valid email address.",
-      }),
-      password: z.string().min(5, {
-        message: "Password must be at least 5 characters.",
-      }),
-      confirm_password: z.string().min(5, {
-        message: "Password must be at least 5 characters.",
-      }),
-    })
-    .refine((data) => data.password === data.confirm_password, {
-      message: "Passwords do not match",
-      path: ["confirmPassword"],
-    });
+  const { FormRegisterSchema: formSchema, onRegisterSubmit } = useAuth();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -40,7 +25,12 @@ export function RegisterForm() {
 
   return (
     <Form {...form}>
-      <form className="flex flex-col gap-4">
+      <form
+        className="flex flex-col gap-4"
+        onSubmit={form.handleSubmit((values) =>
+          onRegisterSubmit(values, form.reset)
+        )}
+      >
         <div className="grid md:flex md:flex-row items-center gap-4">
           <FormField
             control={form.control}
@@ -123,7 +113,13 @@ export function RegisterForm() {
           )}
         />
 
-        <Button variant={"dark"} type="submit" className="w-full mt-4 py-5">
+        <Button
+          variant={"dark"}
+          type="submit"
+          className="w-full mt-4 py-5"
+          disabled={form.formState.isSubmitting}
+        >
+          {form.formState.isSubmitting && <Spinner />}
           Sign Up
         </Button>
 

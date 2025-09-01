@@ -11,6 +11,10 @@ export function cn(...inputs: ClassValue[]) {
 
 export const WEB_NAME = import.meta.env.VITE_SITE_NAME;
 
+export const getErrorMessage = (error: unknown): string => {
+  return error instanceof Error ? error.message : "An unknown error occurred";
+};
+
 export const encryptedAdminTransform = createTransform<any, string>(
   // transform state on its way to being serialized and persisted
   (inboundState: any) => {
