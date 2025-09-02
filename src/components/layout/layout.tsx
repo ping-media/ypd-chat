@@ -8,7 +8,6 @@ import SEO from "../SEO";
 import usePageName from "../../hooks/usePageName";
 import Footer from "./Footer";
 import { lazy, Suspense } from "react";
-// import { SidebarPersistProvider } from "@/hooks/usePersistentSidebar";
 import MainLayout from "./MainLayout";
 import { SidebarPersistProvider } from "@/hooks/usePersistentSidebar";
 
@@ -18,11 +17,12 @@ const Layout = () => {
   const location = useLocation();
   const loadingBarRef = useLoadingBar();
   const { pageTitle } = usePageName(loadingBarRef);
+  const sidebarExcludePage = ["/pricing", "/"];
 
   // scroll the page to top when ever page change
   useScrollToTop();
 
-  if (location.pathname === "/pricing") {
+  if (sidebarExcludePage.includes(location.pathname)) {
     return (
       <>
         <SEO title={pageTitle} />

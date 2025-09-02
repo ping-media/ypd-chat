@@ -1,20 +1,11 @@
 import { images } from "@/lib/constant";
+import UserAvatar from "../animation-props/UserAvatar";
 const PrepareScreen = () => {
   return (
     <>
       <div className="flex-1 flex flex-col items-center justify-center max-w-5xl mx-auto text-center px-4 relative overflow-hidden">
         {/* Avatar */}
-        <div className="relative">
-          <div className="w-28 h-28 rounded-full flex items-center justify-center bg-[var(--color-green-20)] shadow-lg">
-            <img
-              src={images.avatar}
-              alt="Avatar"
-              className="w-full h-full rounded-full object-cover"
-            />
-          </div>
-          {/* Glow / pulse effect */}
-          <div className="absolute inset-0 rounded-full border-4 border-green-100 animate-ping"></div>
-        </div>
+        <UserAvatar image={images.avatar} />
 
         {/* Title */}
         <h1 className="mt-8 text-3xl md:text-5xl font-semibold leading-normal">

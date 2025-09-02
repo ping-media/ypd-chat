@@ -47,8 +47,7 @@ const useAuth = () => {
     try {
       const response: any = await API.post("/auth/login", data);
       if (response) {
-        // console.log(response);
-        dispatch(handleLogin(response));
+        dispatch(handleLogin(response.data));
         reset();
         navigate("/");
         toast.success("login successfully");

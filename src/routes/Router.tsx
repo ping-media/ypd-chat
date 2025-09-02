@@ -19,6 +19,7 @@ import OnBoardingLayout from "@/components/layout/OnBoarding";
 import ProfileSetup from "./pages/ProfileSetup";
 import PrepareScreen from "@/components/loaders/PrepareScreen";
 import Pricing from "./pages/Pricing";
+import ChatScreen from "./pages/ChatScreen";
 // import { testLoader } from "./loaders";
 
 export const router = createBrowserRouter([
@@ -82,6 +83,11 @@ export const router = createBrowserRouter([
           {
             index: true,
             element: <Home />,
+            // loader: testLoader,
+          },
+          {
+            path: "/cvp-lite",
+            element: <ChatScreen />,
             // loader: testLoader,
           },
           {

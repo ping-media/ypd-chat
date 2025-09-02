@@ -20,7 +20,7 @@ type AppSidebarProps = {
   side?: "left" | "right";
 } & React.ComponentProps<typeof Sidebar>;
 
-const RightSidebar = ({ side = "right", ...props }: AppSidebarProps) => {
+export const RightSidebar = ({ side = "right", ...props }: AppSidebarProps) => {
   const { setOpenMobile, openMobile } = useSidebar();
   const navigation = useNavigation();
 
@@ -74,4 +74,7 @@ const RightSidebar = ({ side = "right", ...props }: AppSidebarProps) => {
   );
 };
 
-export default RightSidebar;
+export const useRightSidebar = () => {
+  const { toggleSidebar } = useSidebar();
+  return { toggleRightSidebar: toggleSidebar };
+};

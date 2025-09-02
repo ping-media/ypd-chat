@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import AppSidebar from "../sidebars/AppSidebar";
+import { AppSidebar } from "../sidebars/AppSidebar";
 import { SidebarProvider as LeftSidebarProvider } from "../ui/sidebar";
 import { SidebarProvider as RightSidebarProvider } from "../ui/sidebar";
 import { Main } from "../Main";
@@ -7,12 +7,13 @@ import { Main } from "../Main";
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import { Toaster } from "../ui/sonner";
-import RightSidebar from "../sidebars/RightSidebar";
+import { RightSidebar } from "../sidebars/RightSidebar";
 import { usePersistSidebar } from "@/hooks/usePersistentSidebar";
 
 const MainLayout = () => {
   const { isLeftOpen, setLeftOpen, isRightOpen, setRightOpen } =
     usePersistSidebar();
+
   return (
     <LeftSidebarProvider open={isLeftOpen} onOpenChange={setLeftOpen}>
       <AppSidebar />

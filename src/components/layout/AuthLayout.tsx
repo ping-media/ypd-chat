@@ -7,6 +7,7 @@ import { RootState } from "@/redux/store";
 import { Phone } from "lucide-react";
 import { useSelector } from "react-redux";
 import { Link, Navigate, Outlet, useLocation } from "react-router-dom";
+import { Toaster } from "../ui/sonner";
 
 export default function AuthLayout() {
   const { isLogged } = useSelector((state: RootState) => state.auth);
@@ -111,6 +112,8 @@ export default function AuthLayout() {
           </Card>
         </div>
       </div>
+
+      <Toaster />
     </div>
   );
 }

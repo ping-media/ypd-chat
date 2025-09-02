@@ -98,3 +98,26 @@ export const roles = [
   { title: "I'm a Parent", image: parent },
   { title: "I'm a Professional", image: professional },
 ];
+
+export const quotes = [
+  {
+    message:
+      "“Your mind is a powerful thing. When you fill it with positive thoughts, your life will start to change.”",
+    name: "— Buddha",
+  },
+  {
+    message:
+      "“Your mind is a powerful thing. When you fill it with positive thoughts, your life will start to change.”",
+    name: "— Buddha",
+  },
+  {
+    message:
+      "“Your mind is a powerful thing. When you fill it with positive thoughts, your life will start to change.”",
+    name: "— Buddha",
+  },
+  {
+    message:
+      "“Your mind is a powerful thing. When you fill it with positive thoughts, your life will start to change.”",
+    name: "— Buddha",
+  },
+];
