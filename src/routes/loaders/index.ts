@@ -7,13 +7,24 @@ export const testLoader = async ({ request }: { request: Request }) => {
   const pageName =
     pathname === "/" ? "home" : pathname.replace(/\//g, "_").replace(/^_/, "");
 
+  const productSession = store.getState()["product-session"].first_step || "";
+  const sessionId = store.getState()["product-session"].session_id || "";
+  const userId = store.getState().auth.user.user_id || "";
+
+  if (productSession === "") {
+    return null;
+  }
+
   const response = await handleData({
-    endpoint: "/cvp_lite/questions",
+    endpoint: `/profile-setup/step-questions/${productSession}`,
     method: "POST",
     data: {
-      page: 1,
-      page_size: 10,
-      category_id: "string",
+      session_id: sessionId,
+      user_id: userId,
+      previous_step_context: {
+        additionalProp1: {},
+      },
+      language: "en",
     },
   });
 

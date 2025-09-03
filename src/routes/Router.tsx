@@ -16,11 +16,12 @@ import SetupLayout from "@/components/layout/SetupLayout";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import Role from "./pages/Role";
 import OnBoardingLayout from "@/components/layout/OnBoarding";
-import ProfileSetup from "./pages/ProfileSetup";
+import ProfileSetupLayout from "../components/layout/ProfileSetupLayout";
 import PrepareScreen from "@/components/loaders/PrepareScreen";
 import Pricing from "./pages/Pricing";
 import ChatScreen from "./pages/ChatScreen";
-// import { testLoader } from "./loaders";
+import ProfileSetup from "./pages/ProfileSetup";
+import { testLoader } from "./loaders";
 
 export const router = createBrowserRouter([
   // {
@@ -57,7 +58,7 @@ export const router = createBrowserRouter([
     path: "/setup-profile",
     element: <SetupLayout />,
     children: [
-      { index: true, element: <ProfileSetup /> },
+      { index: true, element: <ProfileSetupLayout /> },
       { path: "choose-role", element: <Role /> },
       { path: "prepare", element: <PrepareScreen /> },
       {
@@ -89,6 +90,10 @@ export const router = createBrowserRouter([
             path: "/cvp-lite",
             element: <ChatScreen />,
             // loader: testLoader,
+          },
+          {
+            path: "/profile-setup",
+            element: <ProfileSetup />,
           },
           {
             path: "/pricing",

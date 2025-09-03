@@ -15,6 +15,7 @@
   --color-green-40: #22c55e;
 
   --color-red-100: #e63a57;
+  --color-gray-10: #d9d9d980;
 
   --main-gradient: radial-gradient(
     circle at center,
@@ -227,6 +228,9 @@ Firefox
   @apply dark:bg-white/20 dark:backdrop-blur-lg dark:border-white/10 dark:shadow-lg dark:shadow-black/20;
 }
 
+.glass {
+  @apply dark:bg-white/5 dark:backdrop-blur-lg dark:border-white/1 dark:shadow-lg dark:shadow-black/5;
+}
 .glass-without-shadow {
   @apply dark:bg-white/20 dark:backdrop-blur-lg dark:border-white/10;
 }

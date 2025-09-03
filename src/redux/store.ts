@@ -5,6 +5,7 @@ import { persistStore } from "redux-persist";
 
 import userReducer from "./authSlice/AuthSlice";
 import dataReducer from "./DataSlice/DataSlice";
+import productSessionReducer from "./productSessionSlice/ProductSessionSlice";
 import { encryptedAdminTransform } from "../lib/utils";
 import persistReducer from "redux-persist/es/persistReducer";
 
@@ -14,8 +15,18 @@ const persistAdminConfig = {
   transforms: [encryptedAdminTransform],
 };
 
+const persistProductSessionConfig = {
+  key: "product-session",
+  storage,
+  transforms: [encryptedAdminTransform],
+};
+
 const rootReducer = combineReducers({
   auth: persistReducer(persistAdminConfig, userReducer),
+  "product-session": persistReducer(
+    persistProductSessionConfig,
+    productSessionReducer
+  ),
   data: dataReducer,
 });
 

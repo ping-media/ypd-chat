@@ -11,12 +11,18 @@ import teacher from "../assets/images/teacher.png";
 import profile1 from "../assets/images/profile_1.png";
 import profile2 from "../assets/images/profile_2.png";
 import avatar from "../assets/images/avatar.png";
+import userOne from "../assets/images/user_1.png";
+import UserTwo from "../assets/images/user_2.png";
+import UserThree from "../assets/images/user_3.png";
 import {
   FileQuestionMark,
+  GraduationCap,
   Info,
   KeyRound,
   Languages,
   Shield,
+  ShieldCheck,
+  Star,
   User2,
 } from "lucide-react";
 
@@ -119,5 +125,61 @@ export const quotes = [
     message:
       "“Your mind is a powerful thing. When you fill it with positive thoughts, your life will start to change.”",
     name: "— Buddha",
+  },
+];
+
+export const testimonials = [
+  {
+    message:
+      "I was confused between engineering and design. YPD’s AI assessment revealed my creative problem-solving strengths and guided m toward UX Design.",
+    rating: 4,
+    highlight: "Now pursuing Design at NIFT Delhi with 95% scholarship",
+    user: {
+      avatar: userOne,
+      name: "Priya Agarwal",
+      location: "Agra, Uttarpradesh",
+    },
+  },
+  {
+    message:
+      "The assessment uncovered my leadership potential and analytical thinking. It recommended Business Analytics over traditional MBA path.",
+    rating: 4,
+    highlight: "Secured internship at Fortune 500 company in Data Science",
+    user: {
+      avatar: UserTwo,
+      name: "Arjun Sharma",
+      location: "New Delhi",
+    },
+  },
+  {
+    message:
+      "YPD helped me discover m passion  for sustainable technology. The AI identified my environmental consciousness and tech aptitude perfectly.",
+    rating: 4,
+    highlight:
+      "Launched successful EdTech startup focused on environmental education",
+    user: {
+      avatar: UserThree,
+      name: "Shreya Benerjee",
+      location: "Kolkata, West Bengal",
+    },
+  },
+];
+
+export const HomeCardList = [
+  {
+    icon: ShieldCheck,
+    message: "100% Scientifically Validated",
+  },
+  {
+    icon: GraduationCap,
+    message: "Trusted by 10,000+ Students",
+  },
+  {
+    icon: Star,
+    message: "98% Accuracy Rate",
+  },
+  {
+    icon: User2,
+    message: "Individual & Institutional Use",
   },
 ];

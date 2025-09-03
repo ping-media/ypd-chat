@@ -46,20 +46,6 @@ const Header = ({
       {...props}
     >
       <div className="w-full flex flex-wrap items-center justify-between gap-3">
-        {/* <div className="flex md:hidden justify-between w-full gap-3">
-          <Button variant={"glass"}>
-            <Menu />
-          </Button>
-
-          <Button
-            variant={"glass"}
-            className="flex items-center justify-center"
-            onClick={() => setOpenMobile(true)}
-          >
-            <CircleTracker isButton={true} />
-          </Button>
-        </div> */}
-
         <div>
           <Heading>{title}</Heading>
           {subtitle && <Text>{subtitle}</Text>}

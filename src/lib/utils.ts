@@ -45,3 +45,10 @@ export const formatHyphenWord = (text: string): string => {
   const capitalizedSecond = second.charAt(0).toUpperCase() + second.slice(1);
   return `${first} ${capitalizedSecond}`;
 };
+
+export const formatNumber = (price: number) => {
+  return new Intl.NumberFormat("en-In", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 2,
+  }).format(price);
+};

@@ -3,13 +3,17 @@ import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import TestimonialCard from "../Card/TestimonialCard";
 
-interface ISlidesDataProps {
-  message: string;
+interface IUserDataProps {
+  avatar: string;
   name: string;
   location: string;
+}
+
+interface ISlidesDataProps {
+  message: string;
   rating: number;
+  user: IUserDataProps;
   highlight: string;
-  avatar: string;
 }
 
 type CarouselProps = {
@@ -58,7 +62,9 @@ const TestimonialCarousel: React.FC<CarouselProps> = ({ slides }) => {
             key={index}
             onClick={() => emblaApi?.scrollTo(index)}
             className={`w-3 h-3 rounded-full transition-all ${
-              index === selectedIndex ? "bg-blue-500 scale-110" : "bg-gray-400"
+              index === selectedIndex
+                ? "bg-white scale-110"
+                : "bg-[var(--color-gray-10)]"
             }`}
           />
         ))}

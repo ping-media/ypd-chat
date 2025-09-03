@@ -63,7 +63,7 @@ const Carousel: React.FC<CarouselProps> = ({ data }) => {
             key={index}
             onClick={() => emblaApi?.scrollTo(index)}
             className={`w-3 h-3 rounded-full transition ${
-              index === selectedIndex ? "bg-white" : "bg-[#D9D9D980]"
+              index === selectedIndex ? "bg-white" : "bg-[var(--color-gray-10)]"
             }`}
           />
         ))}
