@@ -118,10 +118,10 @@ export const AppSidebar = ({ side = "left", ...props }: AppSidebarProps) => {
 
       <SidebarFooter>
         <NavUser
-          user={{
-            name: "Yash Roy",
-            planName: "Free Plan",
-          }}
+        // user={{
+        //   name: "Yash Roy",
+        //   planName: "Free Plan",
+        // }}
         />
       </SidebarFooter>
     </Sidebar>

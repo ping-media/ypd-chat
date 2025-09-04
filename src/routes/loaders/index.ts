@@ -1,42 +1,55 @@
-import { handleData } from "@/lib/function";
-import { setData } from "@/redux/DataSlice/DataSlice";
-import { store } from "@/redux/store";
+import API from "@/data/api";
+import { waitForRehydration } from "@/lib/utils";
+import { setData, setLoading } from "@/redux/DataSlice/DataSlice";
+import { persistor, store } from "@/redux/store";
 
 export const testLoader = async ({ request }: { request: Request }) => {
+  // Wait for hydration
+  await waitForRehydration(persistor);
+
   const pathname = new URL(request.url).pathname;
   const pageName =
     pathname === "/" ? "home" : pathname.replace(/\//g, "_").replace(/^_/, "");
 
-  const productSession = store.getState()["product-session"].first_step || "";
-  const sessionId = store.getState()["product-session"].session_id || "";
-  const userId = store.getState().auth.user.user_id || "";
+  const Store = store.getState();
+  const session = Store.productSession;
+  const nextStep = session?.first_step || "";
+  const sessionId = session?.session_id || "";
+  const userId = Store?.auth?.user?.user_id || "";
 
-  if (productSession === "") {
+  if (nextStep === "") {
+    console.log("not able to fetch next step", Store);
     return null;
   }
 
-  const response = await handleData({
-    endpoint: `/profile-setup/step-questions/${productSession}`,
-    method: "POST",
-    data: {
-      session_id: sessionId,
-      user_id: userId,
-      previous_step_context: {
-        additionalProp1: {},
-      },
-      language: "en",
-    },
-  });
+  store.dispatch(setLoading(true));
 
-  if (response?.success) {
-    const { success, ...rest } = response;
-    store.dispatch(
-      setData({
-        pageName,
-        data: rest,
-      })
+  try {
+    const response = await API.post(
+      `/profile-setup/step-questions/${nextStep}`,
+      {
+        session_id: sessionId,
+        user_id: userId,
+        previous_step_context: {
+          additionalProp1: {},
+        },
+        language: "en",
+      }
     );
-  }
 
-  return null;
+    if (response) {
+      store.dispatch(
+        setData({
+          pageName,
+          data: response,
+        })
+      );
+    }
+
+    return null;
+  } catch (error) {
+    console.log(error);
+  } finally {
+    store.dispatch(setLoading(false));
+  }
 };

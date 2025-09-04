@@ -1,14 +1,17 @@
 import { toast } from "sonner";
 import { z } from "zod";
 import { getErrorMessage } from "../lib/utils";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { AppDispatch } from "../redux/store";
+import { AppDispatch, RootState } from "../redux/store";
 import { FormLoginSchema, FormRegisterSchema } from "./schemas/auth";
 import API from "@/data/api";
 import { handleLogin, logout } from "@/redux/authSlice/AuthSlice";
 
 const useAuth = () => {
+  const { session_id } = useSelector(
+    (state: RootState) => state.productSession
+  );
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
@@ -49,7 +52,13 @@ const useAuth = () => {
       if (response) {
         dispatch(handleLogin(response.data));
         reset();
-        navigate("/");
+
+        if (session_id !== "") {
+          navigate("/cvp-lite");
+        } else {
+          navigate("/");
+        }
+
         toast.success("login successfully");
       }
     } catch (err) {

@@ -52,3 +52,34 @@ export const formatNumber = (price: number) => {
     maximumFractionDigits: 2,
   }).format(price);
 };
+
+export const waitForRehydration = (persistor: any) => {
+  return new Promise<void>((resolve) => {
+    const unsub = persistor.subscribe(() => {
+      const { bootstrapped } = persistor.getState();
+      if (bootstrapped) {
+        unsub();
+        resolve();
+      }
+    });
+  });
+};
+
+export const prepareMessages = (data: any) => {
+  if (!Array.isArray(data) || data.length === 0) {
+    return { introMessages: [], questions: [], completionMessage: "" };
+  }
+
+  const introMessages: string[] = [];
+  const questions: any[] = [];
+  let completionMessage = "";
+
+  data.forEach((step) => {
+    if (step.welcome_message) introMessages.push(step.welcome_message);
+    if (step.motivation_message) introMessages.push(step.motivation_message);
+    if (Array.isArray(step.questions)) questions.push(...step.questions);
+    if (step.completion_message) completionMessage = step.completion_message;
+  });
+
+  return { introMessages, questions, completionMessage };
+};

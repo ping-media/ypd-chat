@@ -7,7 +7,7 @@ import { LoadingBarProvider } from "./context/LoadingBarContext";
 import { ThemeProvider } from "./context/ThemeProvider";
 import { PersistGate } from "redux-persist/integration/react";
 import { RouterProvider } from "react-router-dom";
-import { PreLoader } from "./components/loaders/Preloader";
+// import { PreLoader } from "./components/loaders/Preloader";
 import { router } from "./routes/Router";
 
 createRoot(document.getElementById("root")!).render(
@@ -15,7 +15,7 @@ createRoot(document.getElementById("root")!).render(
     <StrictMode>
       <LoadingBarProvider>
         <ThemeProvider defaultTheme="light" storageKey="youth-pulse-digital">
-          <PersistGate loading={<PreLoader />} persistor={persistor}>
+          <PersistGate loading={null} persistor={persistor}>
             <RouterProvider router={router} />
           </PersistGate>
         </ThemeProvider>

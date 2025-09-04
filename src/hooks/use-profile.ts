@@ -11,7 +11,7 @@ import { addNextStep } from "@/redux/productSessionSlice/ProductSessionSlice";
 const useProfile = () => {
   const { user } = useSelector((state: RootState) => state.auth);
   const { session_id } = useSelector(
-    (state: RootState) => state["product-session"]
+    (state: RootState) => state.productSession
   );
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();

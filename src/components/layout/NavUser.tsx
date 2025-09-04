@@ -18,17 +18,21 @@ import {
 import { Link } from "react-router-dom";
 import useDialogState from "@/hooks/use-dialog-state";
 import LogoutModal from "../modal/LogoutModal";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
-export function NavUser({
-  user,
-}: {
-  user: {
-    name: string;
-    email?: string;
-    planName: string;
-    avatar?: string;
-  };
-}) {
+export function NavUser() {
+  //   {
+  //   user,
+  // }: {
+  //   user: {
+  //     name: string;
+  //     email?: string;
+  //     planName: string;
+  //     avatar?: string;
+  //   };
+  // }
+  const { user } = useSelector((state: RootState) => state.auth);
   const { isMobile } = useSidebar();
   const [open, setOpen] = useDialogState();
 
@@ -43,13 +47,15 @@ export function NavUser({
                 className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
               >
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.avatar} alt={user.name} />
+                  <AvatarImage src={user.avatar} alt={user.first_name} />
                   <AvatarFallback className="rounded-lg">YPD</AvatarFallback>
                 </Avatar>
 
                 <div className="grid flex-1 text-left text-sm leading-tight group-data-[collapsible=icon]:hidden">
-                  <span className="truncate font-semibold">{user.name}</span>
-                  <span className="truncate text-xs">{user.planName}</span>
+                  <span className="truncate capitalize font-semibold">
+                    {user.first_name} {user.last_name}
+                  </span>
+                  <span className="truncate text-xs">{user.role}</span>
                 </div>
 
                 <ChevronsUpDown className="ml-auto size-4 group-data-[collapsible=icon]:hidden" />
@@ -65,11 +71,13 @@ export function NavUser({
               <DropdownMenuLabel className="p-0 font-normal">
                 <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                   <Avatar className="h-8 w-8 rounded-lg">
-                    <AvatarImage src={user.avatar} alt={user.name} />
+                    <AvatarImage src={user.avatar} alt={user.first_name} />
                     <AvatarFallback className="rounded-lg">YPD</AvatarFallback>
                   </Avatar>
                   <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-semibold">{user.name}</span>
+                    <span className="truncate capitalize font-semibold">
+                      {user.first_name} {user.last_name}
+                    </span>
                     <span className="truncate text-xs">{user.email}</span>
                   </div>
                 </div>

@@ -1,4 +1,5 @@
-import axios, { AxiosError } from "axios";
+import API from "@/data/api";
+import { AxiosError } from "axios";
 
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
 
@@ -33,7 +34,7 @@ export const handleData = async <T = unknown,>({
   headers = {},
 }: IHandleDataProps): Promise<ApiResponse<T>> => {
   try {
-    const response = await axios<T>({
+    const response = await API<T>({
       url: `${import.meta.env.VITE_BACKEND_URL}${endpoint}`,
       method: method.toLowerCase() as HttpMethod,
       ...(data ? { data } : {}),

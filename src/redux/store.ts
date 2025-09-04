@@ -16,14 +16,14 @@ const persistAdminConfig = {
 };
 
 const persistProductSessionConfig = {
-  key: "product-session",
+  key: "productSession",
   storage,
   transforms: [encryptedAdminTransform],
 };
 
 const rootReducer = combineReducers({
   auth: persistReducer(persistAdminConfig, userReducer),
-  "product-session": persistReducer(
+  productSession: persistReducer(
     persistProductSessionConfig,
     productSessionReducer
   ),

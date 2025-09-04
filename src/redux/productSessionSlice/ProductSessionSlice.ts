@@ -21,7 +21,7 @@ const initialState: UserState = {
 };
 
 const ProductSessionSlice = createSlice({
-  name: "product-session",
+  name: "productSession",
   initialState,
   reducers: {
     addSession: (state, action) => {

@@ -5,11 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Form, FormField } from "../ui/form";
 
-interface ChatFormProps {
-  selectedUser: any;
-}
-
-const ChatForm = ({ selectedUser }: ChatFormProps) => {
+const ChatForm = () => {
   const formSchema = z.object({
     Description: z.string(),
   });

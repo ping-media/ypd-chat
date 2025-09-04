@@ -1,41 +1,43 @@
-import { useState } from "react";
-import { cn } from "@/lib/utils";
-import { dummyChats } from "@/lib/constant";
+import { useEffect, useMemo } from "react";
+import { cn, prepareMessages } from "@/lib/utils";
+// import { dummyChats } from "@/lib/constant";
 import ChatForm from "./ChatForm";
 import { ScrollArea } from "../ui/scroll-area";
 import { usePageData } from "@/hooks/usePageData";
 import AssessmentForm from "../form/AssessmentForm";
+import Text from "../Text";
+import useChat from "@/hooks/use-chat";
+import { useTypingEffect } from "@/hooks/use-typing-effect";
+import { Sparkle } from "lucide-react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 const Chat = () => {
-  const [selectedUser, setSelectedUser] = useState<any | null>(null);
-  const [mobileSelectedUser, setMobileSelectedUser] = useState<any | null>(
-    null
+  const { fetchData } = useChat();
+  const { first_step } = useSelector(
+    (state: RootState) => state.productSession
   );
-  const dataList = usePageData();
+  const { dataList, loading } = usePageData();
 
-  //   const currentMessage = messages.reduce((acc: Record<string, any>, obj) => {
-  //     const key = obj.Date;
+  useEffect(() => {
+    if (first_step !== "") {
+      fetchData(first_step);
+    }
+  }, [first_step]);
 
-  //     // Create an array for the category if it doesn't exist
-  //     if (!acc[key]) {
-  //       acc[key] = [];
-  //     }
+  const { introMessages, questions, completionMessage } = useMemo(
+    () => prepareMessages(dataList),
+    [dataList]
+  );
 
-  //     // Push the current object to the array
-  //     acc[key].push(obj);
+  const { displayedMessages, currentMessage, messageIndex } =
+    useTypingEffect(introMessages);
 
-  //     return acc;
-  //   }, {});
+  const introFinished = messageIndex >= introMessages.length;
 
   return (
     <>
       <section className="flex h-full gap-6">
-        {/* <div
-          className={cn(
-            "bg-primary-foreground dark:bg-transparent absolute inset-0 left-full z-50 hidden w-full flex-1 flex-col transition-all duration-200 sm:static sm:z-auto sm:flex",
-            mobileSelectedUser && "left-0 flex"
-          )}
-        > */}
         <div
           className={cn(
             "bg-primary-foreground dark:bg-transparent w-full flex-1 flex-col transition-all duration-200 sm:static flex"
@@ -46,7 +48,34 @@ const Chat = () => {
             <div className="flex size-full flex-1">
               <div className="chat-text-container relative -mr-4 flex flex-1 flex-col overflow-y-hidden">
                 <ScrollArea className="chat-flex flex h-40 w-full grow flex-col-reverse justify-start gap-4 py-2 pr-4 pb-4">
-                  {[...dummyChats].reverse().map((msg) => (
+                  {loading ? (
+                    <div>
+                      <div className="w-full p-4">
+                        <Text className="flex items-center gap-1 animate-pulse text-green-100">
+                          <Sparkle className="size-4" /> Thinking...
+                        </Text>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="p-4 w-full">
+                      {displayedMessages.map((msg, i) => (
+                        <div key={i} className="p-3">
+                          {msg}
+                        </div>
+                      ))}
+
+                      {currentMessage && <Text>{currentMessage}</Text>}
+
+                      {introFinished && questions.length > 0 && (
+                        <AssessmentForm data={questions} />
+                      )}
+
+                      {introFinished && completionMessage && (
+                        <Text>{completionMessage}</Text>
+                      )}
+                    </div>
+                  )}
+                  {/* {[...dummyChats].reverse().map((msg) => (
                     <div key={msg.id}>
                       {msg.sender === "ai" ? (
                         <div className="w-full p-4">
@@ -118,14 +147,11 @@ const Chat = () => {
                         </div>
                       )}
                     </div>
-                  ))}
-                  {dataList && (
-                    <AssessmentForm data={dataList && dataList.data.data} />
-                  )}
+                  ))} */}
                 </ScrollArea>
               </div>
             </div>
-            <ChatForm selectedUser={selectedUser} />
+            <ChatForm />
           </div>
         </div>
       </section>

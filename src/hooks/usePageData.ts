@@ -11,6 +11,7 @@ export const usePageData = () => {
   const dataList = useSelector(
     (state: RootState) => state.data.dataList[pageName] ?? null
   );
+  const loading = useSelector((state: RootState) => state.data.loading);
 
-  return dataList;
+  return { dataList, loading };
 };
