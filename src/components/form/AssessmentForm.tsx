@@ -1,3 +1,4 @@
+import OptionsCheckboxGroup from "../Input/OptionsCheckboxGroup";
 import OptionsRadioGroup from "../Input/OptionsRadioGroup";
 import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
@@ -33,13 +34,21 @@ const AssessmentForm = ({ data }: IAssessmentFormProps) => {
                       </Label>
                       <Textarea className="resize-none outline-none min-h-28" />
                     </>
+                  ) : item.type === "single_choice" ? (
+                    <>
+                      <Label className="mb-5">
+                        {`Q${index + 1}. `}
+                        {item.question}
+                      </Label>
+                      <OptionsRadioGroup options={item.options} />
+                    </>
                   ) : (
                     <>
                       <Label className="mb-5">
                         {`Q${index + 1}. `}
-                        {item.text}
+                        {item.question}
                       </Label>
-                      <OptionsRadioGroup options={item.options} />
+                      <OptionsCheckboxGroup options={item.options} />
                     </>
                   )}
                 </div>

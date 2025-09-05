@@ -4,7 +4,11 @@ import { getErrorMessage } from "../lib/utils";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AppDispatch, RootState } from "../redux/store";
-import { FormLoginSchema, FormRegisterSchema } from "./schemas/auth";
+import {
+  EmailVerificationSchema,
+  FormLoginSchema,
+  FormRegisterSchema,
+} from "./schemas/auth";
 import API from "@/data/api";
 import { handleLogin, logout } from "@/redux/authSlice/AuthSlice";
 
@@ -67,6 +71,23 @@ const useAuth = () => {
     }
   };
 
+  const onEmailVerificationSubmit = async (
+    data: z.infer<typeof EmailVerificationSchema>,
+    reset: () => void
+  ) => {
+    try {
+      const response: any = await API.post("/auth/verify-email", data);
+      if (response) {
+        reset();
+        navigate("/auth/sign-in");
+        toast.success("email verified successfully");
+      }
+    } catch (err) {
+      toast.error("unable to login! try again");
+      console.error(err);
+    }
+  };
+
   const onLogout = async () => {
     dispatch(logout());
     navigate("/auth/sign-in");
@@ -75,8 +96,10 @@ const useAuth = () => {
   return {
     FormRegisterSchema,
     FormLoginSchema,
+    EmailVerificationSchema,
     onRegisterSubmit,
     onLoginSubmit,
+    onEmailVerificationSubmit,
     onLogout,
   };
 };

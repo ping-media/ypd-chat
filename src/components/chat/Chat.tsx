@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { cn, prepareMessages } from "@/lib/utils";
 // import { dummyChats } from "@/lib/constant";
 import ChatForm from "./ChatForm";
@@ -34,6 +34,13 @@ const Chat = () => {
     useTypingEffect(introMessages);
 
   const introFinished = messageIndex >= introMessages.length;
+
+  const endRef = useRef<HTMLDivElement | null>(null);
+
+  // scroll to bottom whenever messages update
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [displayedMessages, currentMessage]);
 
   return (
     <>
@@ -73,6 +80,7 @@ const Chat = () => {
                       {introFinished && completionMessage && (
                         <Text>{completionMessage}</Text>
                       )}
+                      <div ref={endRef} />
                     </div>
                   )}
                   {/* {[...dummyChats].reverse().map((msg) => (

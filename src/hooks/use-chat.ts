@@ -25,7 +25,7 @@ const useChat = () => {
 
     try {
       const response = await API.post(
-        `/profile-setup/step-questions/${nextStep}`,
+        `/profile-setup/dummy-step-questions/${nextStep}`,
         {
           session_id: sessionId,
           user_id: userId,

@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { EmailVerificationForm } from "./EmailVerificationForm";
 
 export function EmailVerfication() {
   return (
@@ -11,9 +11,7 @@ export function EmailVerfication() {
         </p>
       </div>
 
-      <Button variant={"dark"} className="w-full mt-6 py-5">
-        Email Sent
-      </Button>
+      <EmailVerificationForm />
 
       <div className="text-center text-muted-foreground text-sm mb-4">
         Already have an account?{" "}

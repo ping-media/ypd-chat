@@ -27,3 +27,9 @@ export const FormLoginSchema = z.object({
     message: "Password must be at least 5 characters.",
   }),
 });
+
+export const EmailVerificationSchema = z.object({
+  token: z.string({
+    message: "Please enter a valid token",
+  }),
+});
