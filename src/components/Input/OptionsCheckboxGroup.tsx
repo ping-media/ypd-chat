@@ -6,6 +6,7 @@ type OptionsCheckboxGroupProps = {
   twoPerLine?: boolean;
   value?: string[];
   onChange?: (selected: string[]) => void;
+  name?: string;
 };
 
 const OptionsCheckboxGroup = ({
@@ -13,6 +14,7 @@ const OptionsCheckboxGroup = ({
   twoPerLine = true,
   value = [],
   onChange,
+  name,
 }: OptionsCheckboxGroupProps) => {
   const handleToggle = (id: string) => {
     if (value.includes(id)) {
@@ -32,6 +34,7 @@ const OptionsCheckboxGroup = ({
             id={opt.id}
             checked={value.includes(opt.id)}
             onCheckedChange={() => handleToggle(opt.id)}
+            name={name}
           />
           <Label htmlFor={opt.id}>{opt.label}</Label>
         </div>

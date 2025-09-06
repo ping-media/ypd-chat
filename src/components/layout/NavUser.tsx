@@ -28,13 +28,13 @@ export function NavUser() {
 
   return (
     <>
-      <SidebarMenu className="group-data-[collapsible=icon]:rounded-md group-data-[collapsible=icon]:p-1 dark:bg-white/20 dark:backdrop-blur-lg dark:border-white/10 dark:shadow-lg dark:shadow-black/20 dark:hover:bg-white/30 shadow-light rounded-xl outline-none group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:items-center group-data-[collapsible=icon]:justify-center">
+      <SidebarMenu className="group-data-[collapsible=icon]:rounded-md group-data-[collapsible=icon]:p-1 group-data-[collapsible=icon]:dark:bg-transparent dark:bg-white/20 dark:backdrop-blur-lg dark:border-white/10 dark:shadow-lg dark:shadow-black/20 group-data-[collapsible=icon]:dark:hover:bg-transparent dark:hover:bg-white/30 shadow-light rounded-xl outline-none group-data-[collapsible=icon]:flex group-data-[collapsible=icon]:items-center group-data-[collapsible=icon]:justify-center">
         <SidebarMenuItem>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <SidebarMenuButton
                 size="xl"
-                className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                className="group-data-[collapsible=icon]:dark:bg-white/20 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground hover:cursor-pointer"
               >
                 <Avatar className="h-8 w-8 rounded-lg">
                   <AvatarImage src={user.avatar} alt={user.first_name} />
@@ -74,11 +74,11 @@ export function NavUser() {
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
-                <DropdownMenuItem>
-                  {/* <Link to={"/pricing"}> */}
-                  <Sparkles />
-                  Upgrade Plan
-                  {/* </Link> */}
+                <DropdownMenuItem asChild>
+                  <Link to={"/pricing"}>
+                    <Sparkles />
+                    Upgrade Plan
+                  </Link>
                 </DropdownMenuItem>
               </DropdownMenuGroup>
               <DropdownMenuGroup>

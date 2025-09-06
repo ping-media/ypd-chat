@@ -66,7 +66,7 @@ export const waitForRehydration = (persistor: any) => {
 };
 
 export const prepareMessages = (data: any) => {
-  if (!Array.isArray(data) || data.length === 0) {
+  if (!data || typeof data !== "object") {
     return { introMessages: [], questions: [], completionMessage: "" };
   }
 
@@ -74,12 +74,10 @@ export const prepareMessages = (data: any) => {
   const questions: any[] = [];
   let completionMessage = "";
 
-  data.forEach((step) => {
-    if (step.welcome_message) introMessages.push(step.welcome_message);
-    if (step.motivation_message) introMessages.push(step.motivation_message);
-    if (Array.isArray(step.questions)) questions.push(...step.questions);
-    if (step.completion_message) completionMessage = step.completion_message;
-  });
+  if (data.welcome_message) introMessages.push(data.welcome_message);
+  if (data.motivation_message) introMessages.push(data.motivation_message);
+  if (Array.isArray(data.questions)) questions.push(...data.questions);
+  if (data.completion_message) completionMessage = data.completion_message;
 
   return { introMessages, questions, completionMessage };
 };

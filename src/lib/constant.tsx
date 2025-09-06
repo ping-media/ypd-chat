@@ -183,3 +183,45 @@ export const HomeCardList = [
     message: "Individual & Institutional Use",
   },
 ];
+
+export const PlansList = [
+  {
+    name: "Basic",
+    highlight: "Perfect to explore and get started",
+    price: "Free",
+    recommended: false,
+    features: [
+      "10 AI chat messages/day",
+      "Basic AI response model",
+      "Limited access to features",
+      "Community support",
+      "No customization",
+    ],
+  },
+  {
+    name: "Pro",
+    highlight: "For regular users who need more power",
+    price: 20,
+    recommended: true,
+    features: [
+      "Unlimited chat messages",
+      "Priority AI response model",
+      "Image and document upload",
+      "Access to career mentor modules",
+      "Basic analytics",
+    ],
+  },
+  {
+    name: "Premium",
+    highlight: "For professionals, schools, or heavy users",
+    price: 120,
+    recommended: false,
+    features: [
+      "Unlimited chat messages",
+      "Priority AI response model",
+      "Image and document upload",
+      "Access to career mentor modules",
+      "Email support",
+    ],
+  },
+];

@@ -93,7 +93,7 @@ const CircleTracker = ({
       <div className="w-0 hidden lg:flex flex-1 text-sm text-gray-950 dark:text-white group-data-[collapsible=icon]:hidden transition-all duration-300 ease-in-out">
         <p className="mt-1 text-gray-500 dark:text-gray-400 text-green-600">
           Completed Step: <span className="font-medium">{currentStep}</span> /
-          10
+          {percentage}
         </p>
       </div>
     </div>

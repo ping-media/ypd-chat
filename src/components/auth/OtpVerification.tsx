@@ -6,8 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import InputOtp from "../Input/InputOtp";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { useDispatch } from "react-redux";
-import { handleLogin } from "@/redux/authSlice/AuthSlice";
+// import { useDispatch } from "react-redux";
+// import { handleLogin } from "@/redux/authSlice/AuthSlice";
 
 const OtpVerification = () => {
   const OTP_LENGTH = 4;
@@ -20,7 +20,7 @@ const OtpVerification = () => {
   });
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -32,7 +32,7 @@ const OtpVerification = () => {
   const handleLoginSubmit = async (values: any) => {
     try {
       console.log(values);
-      dispatch(handleLogin());
+      // dispatch(handleLogin());
       toast.success("login successfully");
       navigate("/");
     } catch (err) {

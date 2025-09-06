@@ -24,8 +24,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     handleLogin: (state, action) => {
-      const { access_token, expires_in, refresh_token, token_type, user } =
-        action.payload;
+      const { access_token, refresh_token, user } = action.payload;
       state.user = user;
       state.accessToken = access_token;
       state.refreshToken = refresh_token;

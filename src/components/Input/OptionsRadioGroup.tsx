@@ -4,15 +4,24 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 type OptionsRadioGroupProps = {
   options?: { id: string; label: string }[];
   twoPerLine?: boolean;
+  value?: string;
+  onChange?: (value: string) => void;
+  name?: string;
 };
 
 const OptionsRadioGroup = ({
   options = [],
   twoPerLine = true,
+  value,
+  onChange,
+  name,
 }: OptionsRadioGroupProps) => {
   return (
     <RadioGroup
       className={twoPerLine ? "grid grid-cols-2 gap-4" : "flex space-x-4"}
+      value={value}
+      onValueChange={onChange}
+      name={name}
     >
       {options.map((opt) => (
         <div key={opt.id} className="flex items-center space-x-2">

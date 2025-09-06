@@ -28,7 +28,7 @@ const Select = ({
   field,
   label,
   placeholder,
-  required = true,
+  // required = true,
   isLabel = true,
   Icon,
   id,

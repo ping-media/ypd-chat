@@ -98,7 +98,7 @@ export const AppSidebar = ({ side = "left", ...props }: AppSidebarProps) => {
                             <Link
                               to={menu.href}
                               target={menu?.target ? menu.target : "_self"}
-                              className="w-full flex items-center gap-3 p-2 rounded-md mb-1"
+                              className="w-full flex items-center gap-3 p-2 rounded-md"
                               onClick={() => setOpenMobile(false)}
                             >
                               <Icon className="shrink-0 !w-5 !h-5" />
@@ -117,12 +117,7 @@ export const AppSidebar = ({ side = "left", ...props }: AppSidebarProps) => {
       </SidebarContent>
 
       <SidebarFooter>
-        <NavUser
-        // user={{
-        //   name: "Yash Roy",
-        //   planName: "Free Plan",
-        // }}
-        />
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   );

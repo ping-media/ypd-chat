@@ -54,17 +54,17 @@ const ChatForm = () => {
                 </label>
                 <div className="w-full flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Button className="rounded-xl" variant="theme">
+                    <Button className="rounded-md" variant="theme">
                       <AudioLines size={20} />
                       60/100
                     </Button>
-                    <Button className="rounded-xl" variant="theme">
+                    <Button className="rounded-md" variant="theme">
                       <Clock size={20} />
                       00:10
                     </Button>
                   </div>
-                  <Button className="rounded-xl" variant="theme">
-                    Save & Continue
+                  <Button className="rounded-md" variant="theme">
+                    Proceed
                     <Send className="rotate-45" size={20} />
                   </Button>
                 </div>

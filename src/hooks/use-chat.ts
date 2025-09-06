@@ -11,10 +11,10 @@ const useChat = () => {
     pathname === "/" ? "home" : pathname.replace(/\//g, "_").replace(/^_/, "");
 
   const fetchData = useCallback(async (nextStep: string) => {
-    const Store = store.getState();
-    const session = Store.productSession;
-    const sessionId = session?.session_id || "";
-    const userId = Store?.auth?.user?.user_id || "";
+    // const Store = store.getState();
+    // const session = Store.productSession;
+    // const sessionId = session?.session_id || "";
+    // const userId = Store?.auth?.user?.user_id || "";
 
     if (!nextStep) {
       console.log("not able to fetch next step");
@@ -24,27 +24,23 @@ const useChat = () => {
     store.dispatch(setLoading(true));
 
     try {
-      const response = await API.post(
-        `/profile-setup/dummy-step-questions/${nextStep}`,
-        {
-          session_id: sessionId,
-          user_id: userId,
-          previous_step_context: {
-            additionalProp1: {},
-          },
-          language: "en",
-        }
+      const response = await API.get(
+        `/profile-setup/dummy-step-questions/${nextStep}`
+        // {
+        //   session_id: sessionId,
+        //   user_id: userId,
+        //   previous_step_context: {
+        //     additionalProp1: {},
+        //   },
+        //   language: "en",
+        // }
       );
 
       if (response?.data) {
-        const prevData = Store.data.dataList[pageName] ?? [];
-
-        const newData = [...prevData, response.data];
-
         store.dispatch(
           setData({
             pageName,
-            data: newData,
+            data: response.data,
           })
         );
       }

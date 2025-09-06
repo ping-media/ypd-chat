@@ -13,6 +13,8 @@ const cardVariants = cva(
           "bg-transparent border-0 lg:dark:bg-white/20 lg:dark:backdrop-blur-lg lg:dark:border-white/10 lg:dark:shadow-lg lg:dark:shadow-black/20",
         glass:
           "dark:bg-white/20 dark:backdrop-blur-lg dark:border-white/10 dark:shadow-lg dark:shadow-black/20",
+        glassLight:
+          "dark:bg-white/7 dark:backdrop-blur-lg dark:border-white/10 dark:shadow-lg dark:shadow-black/7",
         outlined: "bg-white border border-gray-300 shadow-none",
       },
       size: {

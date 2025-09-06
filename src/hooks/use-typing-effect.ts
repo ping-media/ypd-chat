@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 
 export const useTypingEffect = (
   messages: string[],
-  minSpeed = 20,
-  maxSpeed = 50,
-  delayBetween = 800
+  minSpeed = 5,
+  maxSpeed = 20,
+  delayBetween = 500
 ) => {
   const [displayedMessages, setDisplayedMessages] = useState<string[]>([]);
   const [currentMessage, setCurrentMessage] = useState("");
@@ -15,9 +15,8 @@ export const useTypingEffect = (
     if (messageIndex >= messages.length) return;
 
     const currentFullMessage = messages[messageIndex];
-    const dynamicSpeed = Math.max(
-      minSpeed,
-      Math.min(maxSpeed, Math.floor(currentFullMessage.length / 5))
+    const dynamicSpeed = Math.floor(
+      Math.random() * (maxSpeed - minSpeed + 1) + minSpeed
     );
 
     if (charIndex < currentFullMessage.length) {

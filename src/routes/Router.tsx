@@ -21,7 +21,6 @@ import PrepareScreen from "@/components/loaders/PrepareScreen";
 import Pricing from "./pages/Pricing";
 import ChatScreen from "./pages/ChatScreen";
 import ProfileSetup from "./pages/ProfileSetup";
-// import { testLoader } from "./loaders";
 
 export const router = createBrowserRouter([
   // {
@@ -86,9 +85,8 @@ export const router = createBrowserRouter([
             element: <Home />,
           },
           {
-            path: "/cvp-lite",
+            path: "/cvp-lite/:id",
             element: <ChatScreen />,
-            // loader: testLoader,
           },
           {
             path: "/profile-setup",

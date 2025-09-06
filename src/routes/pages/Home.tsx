@@ -6,9 +6,17 @@ import Container from "@/components/Container";
 import Heading from "@/components/Heading";
 import HomeHeader from "@/components/layout/HomeHeader";
 import Text from "@/components/Text";
+import useSteps from "@/hooks/use-steps";
 import { images, quotes, testimonials } from "@/lib/constant";
+import { useEffect } from "react";
 
 const Home = () => {
+  const { fetchData } = useSteps();
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <Container className="md:w-[95%] lg:w-[98%]">
       <HomeHeader />
